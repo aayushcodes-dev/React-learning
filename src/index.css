@@ -66,3 +66,8 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+h1{
+  background-color: #a4a8f5;
+  border-radius: 10px;
+  margin: 20px;
+}

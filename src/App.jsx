@@ -1,23 +1,32 @@
-import Asbutton from "./asbutton";
+
 import { useState } from "react";
-
+import { useEffect } from "react";
+// fetching api example
 function App(){
+
+  const [data ,setData ] = useState([]);
+
+  useEffect(  ()=> {
+    const apifetch = async ()=>{
+    const api = await fetch("https://jsonplaceholder.typicode.com/todos");
+    const apidata = await api.json();
+    console.log(apidata);
+    setData(apidata);
+    }
+
+    apifetch();
+  },[])
  
-   let [count, setCount] = useState(0);
-    const increaseCount =()=>{
-      setCount(count+1);
-    }
+   return <>
 
-    function decreaseCount(){
-      return setCount(count-1);
+   {data.map((data)=><div className="container" key={data.id}>
+
+    <h1>Title : {data.title}</h1>
     
-    }
-  return <div>
-    <h1>Count : {count}</h1>
-    <button onClick={increaseCount}>increase</button>
-    <button onClick={decreaseCount}>decrease</button>
-  </div>
 
+   </div>)}
+   
+   </>;
 }
 
 export default App;
